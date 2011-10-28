@@ -98,7 +98,7 @@ class tx_a21glossary {
 	 * @param array $conf the configuration for the parsing
 	 * @return string the modified content
 	 */
-	protected function main($content, $conf) {
+	protected function main($content, array $conf = NULL) {
 
 		GLOBAL $TSFE;
 
@@ -107,7 +107,7 @@ class tx_a21glossary {
 		// merge with extconf, $conf overrules
 		$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['a21glossary']);
 		if(count($extConf)) {
-			$conf = array_merge($extConf,$conf);
+			$conf = array_merge($extConf, (array) $conf);
 		}
 
 		// return right now if the wrong page type was chosen
