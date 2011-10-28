@@ -6,9 +6,9 @@ config.tx_a21glossary {
 	// includeSearchTags = 1
 	// excludeTags = a,form,acronym,abbr,dfn,h1,h2,h3,h4,h5,h6
 
-	caseSensitiv = 1
-	preserveCase = 0
-	patternModifiers = su
+	caseSensitive = {$a21glossary.caseSensitive}
+	preserveCase = {$a21glossary.preserveCase}
+	patternModifiers = {$a21glossary.patternModifiers}
 
 	excludePages = {$a21glossary.glossaryPage}
 
@@ -16,10 +16,11 @@ config.tx_a21glossary {
 	// excludePages.{$a21glossary.glossaryPage} = acronym,abbr,dfn
 
 	pidList = {$a21glossary.storagePage}
-	typeList = 0
+	typeList = {$a21glossary.typeList}
 
-	linkToGlossary = acronym,abbr,dfn
-	linkOnlyIfNotEmpty = description
+	linkToGlossary = {$a21glossary.linkToGlossary}
+	linkOnlyIfNotEmpty = {$a21glossary.linkOnlyIfNotEmpty}
+
 	typolink {
 		parameter = {$a21glossary.glossaryPage}
 		parameter.override.field = link
@@ -37,10 +38,10 @@ config.tx_a21glossary {
 		}
 		useCacheHash = 1
 		ATagParams = class = "glossary"
-		// you might want to consider the anchor solution instead of detail page
-		// additionalParams >
-		// additionalParams.field = uid
-		// additionalParams.wrap = #tx_a21glossary_|
+
+		{$a21glossary.commentAnchor} additionalParams >
+		{$a21glossary.commentAnchor} additionalParams.field = uid
+		{$a21glossary.commentAnchor} additionalParams.wrap = #tx_a21glossary_|
 	}
 
 	// noglossary = 1

@@ -46,4 +46,25 @@ a21glossary {
 
 		# cat=a21glossary; type=string; label=Definition label: Label for definitions
 	definition_label = definition:
+
+		# cat=a21glossary; type=boolean; label=Case sensitive: Whether to search for glossary elements case sensitively (setting of particular glossary element takes precedence)
+	caseSensitive = 1
+
+		# cat=a21glossary; type=boolean; label=Preseve case: Whether to preserve case for replaced glossary element occurrences (setting of particular glossary element takes precedence)
+	preserveCase = 0
+
+		# cat=a21glossary; type=small; label=Search pattern modifier: Pattern modifier used during searching for glossary elements
+	patternModifiers = su
+
+		# cat=a21glossary; type=int; label=Type list: List of types (typeNum) to be considered for replacing glossary elements
+	typeList = 0
+
+		# cat=a21glossary; type=string; label=Elements to be used: Only link those types of glossary elements
+	linkToGlossary = acronym,abbr,dfn
+
+		# cat=a21glossary; type=string; label=Element condition: Only link glossary elements if at least one of the listed fields has content
+	linkOnlyIfNotEmpty = description
+
+		# cat=a21glossary; type=comment; label=Enable anchor solution: Use anchored links instead of linking to the details page
+	commentAnchor = #
 }

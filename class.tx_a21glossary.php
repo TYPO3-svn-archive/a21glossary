@@ -246,7 +246,7 @@ class tx_a21glossary {
 					if ($item['force_case']) {
 						$caseSensitive = ($item['force_case'] == 1) ? 'i' : '';
 					} else {
-						$caseSensitive = $conf['caseSensitiv'] ? '' : 'i';
+						$caseSensitive = $conf['caseSensitive'] ? '' : 'i';
 					}
 
 					// wrap needle regexp
