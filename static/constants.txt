@@ -38,14 +38,17 @@ a21glossary {
 		# cat=a21glossary; type=wrap; label=All entries link wrap: Wrap of the all entries link
 	allEntriesWrap = <p class="all">|</p>
 
-		# cat=a21glossary; type=string; label=Acronym label: Label for acronyms
-	acronym_label = acronym of:
+		# cat=a21glossary; type=string; label=Acronym label: Label for acronyms (overrides default label
+	acronym_label =
 
-		# cat=a21glossary; type=string; label=Abbreviation labels: Label for abbreviations
-	abbreviation_label = abbreviation of:
+		# cat=a21glossary; type=string; label=Abbreviation labels: Label for abbreviations (overrides default label)
+	abbreviation_label =
 
-		# cat=a21glossary; type=string; label=Definition label: Label for definitions
-	definition_label = definition:
+		# cat=a21glossary; type=string; label=Definition label: Label for definitions (overrides default label)
+	definition_label =
+
+		# cat=a21glossary; type=wrap; label=Label wrap: Wrap to used on labels (useful to e.g. add a colon after the label)
+	labelWrap = |:
 
 		# cat=a21glossary; type=boolean; label=Case sensitive: Whether to search for glossary elements case sensitively (setting of particular glossary element takes precedence)
 	caseSensitive = 1

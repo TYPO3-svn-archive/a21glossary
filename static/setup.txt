@@ -76,7 +76,6 @@ tx_a21glossary_main {
 
 	20 = COA
 	20 {
-
 		wrap = {$a21glossary.restWrap}
 
 		// you might want to consider the anchor solution instead of detail page
@@ -89,12 +88,27 @@ tx_a21glossary_main {
 			key.field = shorttype
 			stdWrap.if.isTrue.field = shorttype
 			stdWrap.wrap = {$a21glossary.typeWrap}
+
 			acronym = TEXT
-			acronym.value = {$a21glossary.acronym_label}
+			acronym {
+				data = lll:EXT:a21glossary/locallang.xml:label_acronym
+				override = {$a21glossary.acronym_label}
+				wrap = {$a21glossary.labelWrap}
+			}
+
 			abbr = TEXT
-			abbr.value = {$a21glossary.abbreviation_label}
+			abbr {
+				data = lll:EXT:a21glossary/locallang.xml:label_abbreviation
+				override = {$a21glossary.abbreviation_label}
+				wrap = {$a21glossary.labelWrap}
+			}
+
 			dfn = TEXT
-			dfn.value = {$a21glossary.definition_label}
+			dfn {
+				data = lll:EXT:a21glossary/locallang.xml:label_definition
+				override = {$a21glossary.definition_label}
+				wrap = {$a21glossary.labelWrap}
+			}
 		}
 
 		20 = TEXT
