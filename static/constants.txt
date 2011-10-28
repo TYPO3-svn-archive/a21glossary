@@ -1,32 +1,49 @@
 a21glossary {
-
-		# cat=a21glossary; type=; label=Storage page: Comma separated list of page IDs where the glossary entries are stored in the backend
+		# cat=a21glossary; type=int+; label=Storage page: Comma separated list of page IDs where the glossary entries are stored in the backend
 	storagePage = 0
+
 		# cat=a21glossary; type=int+; label=Frontend glossary page: Page ID of the frontend glossary page, where the list of glossary entries are shown
 	glossaryPage = 0
+
 		# cat=a21glossary; type=wrap; label=Glossary wrap: It wraps the whole glossary content
 	allWrap = <dl class="glossary">|</dl>
-		# cat=a21glossary;  type=wrap; label=Term wrap: It wraps the term (Acronym / abbreviation / definition) in the glossary list
+
+		# cat=a21glossary; type=wrap; label=Term wrap: It wraps the term (Acronym / abbreviation / definition) in the glossary list
 	shortWrap = <dt>|</dt>
+
 		# cat=a21glossary; type=wrap; label=Description block wrap: It wraps the rest block - long version, description etc.
 	restWrap = <dd>|</dd>
-		# cat=a21glossary;  type=wrap; label=Type wrap: It wraps the type of the term - acronym / abbreviation / definition
+
+		# cat=a21glossary; type=wrap; label=Type wrap: It wraps the type of the term - acronym / abbreviation / definition
 	typeWrap = <span class="type">|</span>
-		# cat=a21glossary;  type=wrap; label=Long version wrap: It wraps the long version of the term
+
+		# cat=a21glossary; type=wrap; label=Long version wrap: It wraps the long version of the term
 	longWrap =  <strong>|</strong>
-		# cat=a21glossary;  type=wrap; label=Description wrap: It wraps the description of the term
+
+		# cat=a21glossary; type=wrap; label=Description wrap: It wraps the description of the term
 	descriptionWrap = <p class="description">|</p>
 
-		# cat=a21glossary;  type=; label=Sorting field: The database field to sort the entries in the glossary list
+		# cat=a21glossary; type=string; label=Sorting field: The database field to sort the entries in the glossary list
 	orderBy = short
 
+		# cat=a21glossary; type=string; label=Back link label: Label for the back link
 	back = back
+
+		# cat=a21glossary; type=wrap; label=Back link wrap: Wrap of the back link
 	backWrap = <p class=back">|</p>
 
+		# cat=a21glossary; type=string; label=All entries link label: Label for the all entries link
 	allEntries = show all entries
+
+		# cat=a21glossary; type=wrap; label=All entries link wrap: Wrap of the all entries link
 	allEntriesWrap = <p class="all">|</p>
 
+		# cat=a21glossary; type=string; label=Acronym label: Label for acronyms
 	acronym_label = acronym of:
+
+		# cat=a21glossary; type=string; label=Abbreviation labels: Label for abbreviations
 	abbreviation_label = abbreviation of:
+
+		# cat=a21glossary; type=string; label=Definition label: Label for definitions
 	definition_label = definition:
 }
