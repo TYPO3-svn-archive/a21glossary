@@ -1,5 +1,5 @@
 a21glossary {
-		# cat=a21glossary; type=int+; label=Storage page: Comma separated list of page IDs where the glossary entries are stored in the backend
+		# cat=a21glossary; type=string; label=Storage page: Comma separated list of page IDs where the glossary entries are stored in the backend
 	storagePage = 0
 
 		# cat=a21glossary; type=int+; label=Frontend glossary page: Page ID of the frontend glossary page, where the list of glossary entries are shown
