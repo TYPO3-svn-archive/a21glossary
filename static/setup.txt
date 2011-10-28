@@ -78,10 +78,9 @@ tx_a21glossary_main {
 	20 {
 		wrap = {$a21glossary.restWrap}
 
-		// you might want to consider the anchor solution instead of detail page
-		// 5 = TEXT
-		// 5.field = uid
-		// 5.wrap = <a class="glossary hidden" name="tx_a21glossary_|"><!-- --></a>
+		{$a21glossary.commentAnchor} 5 = TEXT
+		{$a21glossary.commentAnchor} 5.field = uid
+		{$a21glossary.commentAnchor} 5.wrap = <a class="glossary hidden" name="tx_a21glossary_|"><!-- --></a>
 
 		10 = CASE
 		10 {
