@@ -168,12 +168,13 @@ $TCA['tx_a21glossary_main'] = array(
 				'cols' => '48',
 				'rows' => '5',
 				'wizards' => array(
-					'_PADDING' => 2,
+					'_PADDING' => 4,
+					'_VALIGN' => 'middle',
 					'RTE' => array(
 						'notNewRecords' => 1,
 						'RTEonly' => 1,
 						'type' => 'script',
-						'title' => 'Full screen Rich Text Editing|Formatteret redigering i hele vinduet',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext.W.RTE',
 						'icon' => 'wizard_rte2.gif',
 						'script' => 'wizard_rte.php',
 					),
@@ -279,7 +280,7 @@ $TCA['tx_a21glossary_main'] = array(
 		),
 	),
 	'types' => array(
-		'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, short, shortcut, longversion, shorttype, language, description;;;richtext[cut|copy|paste|formatblock|textcolor|bold|italic|underline|left|center|right|orderedlist|unorderedlist|outdent|indent|link|table|image|line|chMode]:rte_transform[mode=ts_css|imgpath=uploads/tx_a21glossary/rte/], link, exclude,force_linking,force_case,force_preservecase,force_regexp,force_global')
+		'0' => array('showitem' => 'sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, short, shortcut, longversion, shorttype, language, description;;;richtext:rte_transform[flag=rte_enabled|mode=ts_css|imgpath=uploads/tx_a21glossary/rte/], link, exclude,force_linking,force_case,force_preservecase,force_regexp,force_global')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => 'starttime, endtime, fe_group'),
