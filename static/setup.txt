@@ -108,6 +108,7 @@ tx_a21glossary_main {
 		30 {
 			if.isTrue.field = description
 			field = description
+			parseFunc = < lib.parseFunc_RTE
 			wrap = {$a21glossary.descriptionWrap}
 		}
 	}
