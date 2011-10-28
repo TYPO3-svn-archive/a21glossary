@@ -339,11 +339,13 @@ class tx_a21glossary {
 					$excludeTags = array_unique($excludeTags);
 
 					foreach ($excludeTags as $value) {
-						$this->searchMarkers2[] = '<' . $value;
-						$this->replaceMarkers2[] = '<a21glossex><' . $value;
+						$patternValue = preg_quote($value, '#');
 
-						$this->searchMarkers2[] = '</' . $value . '>';
-						$this->replaceMarkers2[] = '</' . $value . '></a21glossex>';
+						$this->searchMarkers2[] = '#<' . $patternValue . '\b#';
+						$this->replaceMarkers2[] = '<a21glossex><' . $patternValue;
+
+						$this->searchMarkers2[] = '#</' . $patternValue . '>#';
+						$this->replaceMarkers2[] = '</' . $patternValue . '></a21glossex>';
 					}
 				}
 			}
@@ -552,7 +554,16 @@ class tx_a21glossary {
 			} else {
 
 				// content maybe splittable if excludetags will be marked, so mark them and go on with recursion
-				return $this->splitAndReplace(str_replace($this->searchMarkers2, $this->replaceMarkers2, $content), $glossaryOn, 1, $depth+1);
+				return $this->splitAndReplace(
+					preg_replace(
+						$this->searchMarkers2,
+						$this->replaceMarkers2,
+						$content
+					),
+					$glossaryOn,
+					1,
+					$depth + 1
+				);
 			}
 
 			// dead end, nonsplittable part and glossary disabled
