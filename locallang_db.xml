@@ -31,7 +31,7 @@
 			<label index="tx_a21glossary_main.language.I.13">Hebrew</label>
 			<label index="tx_a21glossary_main.language">Differing language of item</label>
 			<label index="tx_a21glossary_main.description">Description</label>
-			<label index="tx_a21glossary_main.link">Link</label>
+			<label index="tx_a21glossary_main.link">External Link (Override, instead of glossary page)</label>
 			<label index="tx_a21glossary_main.exclude">Exclude from frontend glossary list</label>
 			<label index="tx_a21glossary_main.force_linking">Linking</label>
 			<label index="tx_a21glossary_main.force_linking.I.0">Keep Global Setting</label>
@@ -78,7 +78,7 @@
 			<label index="tx_a21glossary_main.language.I.13">Hebräisch</label>
 			<label index="tx_a21glossary_main.language">Abweichende Sprache des Begriffs</label>
 			<label index="tx_a21glossary_main.description">Beschreibung</label>
-			<label index="tx_a21glossary_main.link">Link</label>
+			<label index="tx_a21glossary_main.link">Externer Link (Override, statt Glossarseite)</label>
 			<label index="tx_a21glossary_main.exclude">Von der Glossar-Liste im Frontend ausschließen</label>
 			<label index="tx_a21glossary_main.force_linking">Verlinkung</label>
 			<label index="tx_a21glossary_main.force_linking.I.0">Wie global voreingestellt</label>

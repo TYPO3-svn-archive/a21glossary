@@ -341,6 +341,7 @@ class tx_a21glossary {
 					foreach ($excludeTags as $value) {
 						$patternValue = preg_quote($value, '#');
 
+						// b is for word boundary
 						$this->searchMarkers2[] = '#<' . $patternValue . '\b#';
 						$this->replaceMarkers2[] = '<a21glossex><' . $patternValue;
 

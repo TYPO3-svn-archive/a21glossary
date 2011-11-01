@@ -1,8 +1,7 @@
 DEBUG CHEATSHEET
 (GERMAN VERSION SEE BELOW)
 
-Since the a21glossary is partially tricky to adjust, this part delivers useful bavioral feedback.
-
+Since the a21glossary is partially tricky to adjust, this part delivers useful behavioral feedback.
 - You need to be logged into the Typo3-Backend, or the debug parameters wont work
 - Typo3 Page Caching is disabled when using one of these options, so feel free to experiment.
 

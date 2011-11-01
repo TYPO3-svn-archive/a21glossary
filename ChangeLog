@@ -1,7 +1,29 @@
+
 (add new changes on top of this file)
 
 Please Note: Clear all Caches yourself after installing this extension
 
+11-11-01 (0.9.0) Ronny Vorpahl <vorpahl@artplan21.de>
+
+	* committed to TER
+
+
+11-11-01 (0.8.4) Ronny Vorpahl <vorpahl@artplan21.de>
+
+	* changed Label of tx_a21glossary_main.link as suggested in
+		http://forge.typo3.org/issues/31006
+
+	* committing Bugfix/Maintenance Release from Oliver Hader - Thank you very much by the way
+		53539	2011-10-28 19:36	Oliver Hader	[TASK] Update ext_emconf.php
+		53538	2011-10-28 19:33	Oliver Hader	[BUGFIX] #31388: Applying exclude tags is plain wrong
+		53535	2011-10-28 18:51	Oliver Hader	[TASK] Add missing locallang.xml file
+		53534	2011-10-28 18:42	Oliver Hader	[TASK] Update ext_emconf.php
+		53533	2011-10-28 18:39	Oliver Hader	[TASK] Add missing comment constant for anchor solution
+		53532	2011-10-28 18:37	Oliver Hader	[FEATURE] #31007: Integrate labels of types shown in frontend to locallang files
+		53531	2011-10-28 18:12	Oliver Hader	[BUGFIX] #31009: Paragraphs in description are not rendered in frontend
+		53530	2011-10-28 18:08	Oliver Hader	[BUGFIX] Constant storagePage can be a list
+		53529	2011-10-28 18:03	Oliver Hader	[BUGFIX] #31386: Wrong RTE configuration in TCA
+		53527	2011-10-28 17:44	Oliver Hader	[BUG] #31383: PHP warning if processed before caching
 
 11-10-05 (0.8.3) Ronny Vorpahl <vorpahl@artplan21.de>
 
