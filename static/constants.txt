@@ -30,7 +30,7 @@ a21glossary {
 	back = back
 
 		# cat=a21glossary; type=wrap; label=Back link wrap: Wrap of the back link
-	backWrap = <p class=back">|</p>
+	backWrap = <p class="back">|</p>
 
 		# cat=a21glossary; type=string; label=All entries link label: Label for the all entries link
 	allEntries = show all entries

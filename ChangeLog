@@ -3,15 +3,20 @@
 
 Please Note: Clear all Caches yourself after installing this extension
 
+
+11-11-03 (0.9.1) Ronny Vorpahl <vorpahl@artplan21.de>
+
+	* Thanks to Xaver Maierhofer: changed <p class=back" -> <p class="back" in constants.txt
+	* minor label changes
+
+
 11-11-01 (0.9.0) Ronny Vorpahl <vorpahl@artplan21.de>
 
 	* committed to TER
 
-
 11-11-01 (0.8.4) Ronny Vorpahl <vorpahl@artplan21.de>
 
-	* changed Label of tx_a21glossary_main.link as suggested in
-		http://forge.typo3.org/issues/31006
+	* fixed sugesstion #31006:  changed Label of tx_a21glossary_main.link as suggested in
 
 	* committing Bugfix/Maintenance Release from Oliver Hader - Thank you very much by the way
 		53539	2011-10-28 19:36	Oliver Hader	[TASK] Update ext_emconf.php

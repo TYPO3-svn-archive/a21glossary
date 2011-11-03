@@ -31,7 +31,7 @@
 			<label index="tx_a21glossary_main.language.I.13">Hebrew</label>
 			<label index="tx_a21glossary_main.language">Differing language of item</label>
 			<label index="tx_a21glossary_main.description">Description</label>
-			<label index="tx_a21glossary_main.link">External Link (Override, instead of glossary page)</label>
+			<label index="tx_a21glossary_main.link">External Link (Override, Instead Of Glossary Page)</label>
 			<label index="tx_a21glossary_main.exclude">Exclude from frontend glossary list</label>
 			<label index="tx_a21glossary_main.force_linking">Linking</label>
 			<label index="tx_a21glossary_main.force_linking.I.0">Keep Global Setting</label>
@@ -96,7 +96,7 @@
 			<label index="tx_a21glossary_main.force_regexp.I.0">Komplettes Wort (Default)</label>
 			<label index="tx_a21glossary_main.force_regexp.I.1">Wortteil</label>
 			<label index="tx_a21glossary_main.force_global">ersetzen In </label>
-			<label index="tx_a21glossary_main.force_global.I.0">wie voreingestellt</label>
+			<label index="tx_a21glossary_main.force_global.I.0">Wie voreingestellt</label>
 			<label index="tx_a21glossary_main.force_global.I.1">Erzwinge Im Gesamten Content (Nicht Empfohlen)</label>
 		</languageKey>
 	</data>
