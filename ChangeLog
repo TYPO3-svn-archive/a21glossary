@@ -3,6 +3,9 @@
 
 Please Note: Clear all Caches yourself after installing this extension
 
+11-11-04 Oliver Hader <oliver.hader@typo3.org>
+
+	* [BUGFIX] #31571: Wraps produce incorrect nested paragraph tags
 
 11-11-03 (0.9.1) Ronny Vorpahl <vorpahl@artplan21.de>
 

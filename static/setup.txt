@@ -82,40 +82,46 @@ tx_a21glossary_main {
 		{$a21glossary.commentAnchor} 5.field = uid
 		{$a21glossary.commentAnchor} 5.wrap = <a class="glossary hidden" name="tx_a21glossary_|"><!-- --></a>
 
-		10 = CASE
+		10 = COA
 		10 {
-			key.field = shorttype
-			stdWrap.if.isTrue.field = shorttype
-			stdWrap.wrap = {$a21glossary.typeWrap}
+			10 = CASE
+			10 {
+				key.field = shorttype
+				stdWrap.if.isTrue.field = shorttype
+				stdWrap.wrap = {$a21glossary.typeWrap}
 
-			acronym = TEXT
-			acronym {
-				data = lll:EXT:a21glossary/locallang.xml:label_acronym
-				override = {$a21glossary.acronym_label}
-				wrap = {$a21glossary.labelWrap}
+				acronym = TEXT
+				acronym {
+					data = lll:EXT:a21glossary/locallang.xml:label_acronym
+					override = {$a21glossary.acronym_label}
+					wrap = {$a21glossary.labelWrap}
+				}
+
+				abbr = TEXT
+				abbr {
+					data = lll:EXT:a21glossary/locallang.xml:label_abbreviation
+					override = {$a21glossary.abbreviation_label}
+					wrap = {$a21glossary.labelWrap}
+				}
+
+				dfn = TEXT
+				dfn {
+					data = lll:EXT:a21glossary/locallang.xml:label_definition
+					override = {$a21glossary.definition_label}
+					wrap = {$a21glossary.labelWrap}
+				}
 			}
 
-			abbr = TEXT
-			abbr {
-				data = lll:EXT:a21glossary/locallang.xml:label_abbreviation
-				override = {$a21glossary.abbreviation_label}
-				wrap = {$a21glossary.labelWrap}
+			20 = TEXT
+			20 {
+				if.isTrue.field = longversion
+				field = longversion
+				wrap = {$a21glossary.longWrap}
 			}
 
-			dfn = TEXT
-			dfn {
-				data = lll:EXT:a21glossary/locallang.xml:label_definition
-				override = {$a21glossary.definition_label}
-				wrap = {$a21glossary.labelWrap}
-			}
+			wrap = {$a21glossary.abstractWrap}
 		}
 
-		20 = TEXT
-		20 {
-			if.isTrue.field = longversion
-			field = longversion
-			wrap = {$a21glossary.longWrap}
-		}
 
 		30 = TEXT
 		30 {

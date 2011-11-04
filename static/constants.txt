@@ -14,6 +14,9 @@ a21glossary {
 		# cat=a21glossary; type=wrap; label=Description block wrap: It wraps the rest block - long version, description etc.
 	restWrap = <dd>|</dd>
 
+		# cat=a21glossary; type=wrap; label=Abstract wrap: It wraps the abstract of the term
+	abstractWrap = <div class="abstract">|</div>
+
 		# cat=a21glossary; type=wrap; label=Type wrap: It wraps the type of the term - acronym / abbreviation / definition
 	typeWrap = <span class="type">|</span>
 
@@ -21,7 +24,7 @@ a21glossary {
 	longWrap =  <strong>|</strong>
 
 		# cat=a21glossary; type=wrap; label=Description wrap: It wraps the description of the term
-	descriptionWrap = <p class="description">|</p>
+	descriptionWrap = <div class="description">|</div>
 
 		# cat=a21glossary; type=string; label=Sorting field: The database field to sort the entries in the glossary list
 	orderBy = short
