@@ -3,6 +3,8 @@
 
 Please Note: Clear all Caches yourself after installing this extension
 
+
+
 11-12-08 (0.9.4) Ronny Vorpahl <vorpahl@artplan21.de>
 
 	* [BUGFIX] #31929: FE-plugin ignores storage page configuration
@@ -12,6 +14,7 @@ Please Note: Clear all Caches yourself after installing this extension
 	* Synced both typoscript configurations (old+new) as far as possible
 		* they differ only in css/wraps/list-styling - no behavioral differences
 
+	* TER upload
 
 11-11-21 (0.9.3) Oliver Hader <oliver.hader@typo3.org>
 
