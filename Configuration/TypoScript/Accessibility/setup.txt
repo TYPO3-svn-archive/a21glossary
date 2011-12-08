@@ -1,8 +1,8 @@
 
-# global glossary configuration
+# global a21glossary configuration - Accessible Output (Recommended)
 config.tx_a21glossary {
 
-	# you are allowed to set this globally using the extension manager
+	# This is just an override - you can set this globally using the extension manager
 	#includeSearchTags = 1
 	#excludeTags = a,form,acronym,abbr,dfn,h1,h2,h3,h4,h5,h6
 
@@ -12,8 +12,8 @@ config.tx_a21glossary {
 
 	excludePages = {$a21glossary.glossaryPage}
 
-	#exclude whole page
-	excludePages.{$a21glossary.glossaryPage} = acronym,abbr,dfn
+	# EXAMPLE exclude only some glossary types instead of all
+	#excludePages.{$somePageID} = acronym,abbr,dfn
 
 	pidList = {$a21glossary.storagePage}
 	typeList = {$a21glossary.typeList}
@@ -44,23 +44,25 @@ config.tx_a21glossary {
 		{$a21glossary.commentAnchor} additionalParams.wrap = #tx_a21glossary_|
 	}
 
-	# noglossary = 1
-	# debug = 1
-	# debug {
-		# query = 1
-		# result = 1
-		# keep = 1
-		# demo = 1
-		# info = 1
-		# markers = 1
-		# keepMarkers = 1
-		# conf = 1
-		# noncaching = 1
-		# regexp = 1
-		# highlight = 1
-		# output = 1
-		# input = 1
-	# }
+	#noglossary = 1
+
+	# EXAMPLE you can set them using get params - see README.txt or manual
+	#debug = 1
+	#debug {
+		#query = 1
+		#result = 1
+		#keep = 1
+		#demo = 1
+		#info = 1
+		#markers = 1
+		#keepMarkers = 1
+		#conf = 1
+		#noncaching = 1
+		#regexp = 1
+		#highlight = 1
+		#output = 1
+		#input = 1
+	#}
 }
 
 # configuration of a single glossary list item
@@ -74,7 +76,7 @@ tx_a21glossary_main {
 		if.isTrue.field = short
 		outerWrap = {$a21glossary.termWrap}
 		outerWrap.insertData = 1
-		
+
 	}
 
 	{$a21glossary.commentAnchor} 20 = TEXT
@@ -85,10 +87,12 @@ tx_a21glossary_main {
 	30 {
 		key.field = shorttype
 
-		stdWrap.if.isTrue.field = shorttype
-		stdWrap.required = 1
-		stdWrap.outerWrap = {$a21glossary.labelWrap}
-		stdWrap.outerWrap.insertData = 1
+		stdWrap {
+			if.isTrue.field = shorttype
+			required = 1
+			outerWrap = {$a21glossary.labelWrap}
+			outerWrap.insertData = 1
+		}
 
 		acronym = TEXT
 		acronym {
@@ -117,7 +121,6 @@ tx_a21glossary_main {
 		outerWrap.insertData = 1
 	}
 
-
 	50 = TEXT
 	50 {
 		field = description
@@ -131,25 +134,14 @@ tx_a21glossary_main {
 # configuration of the glossary list plugin
 plugin.tx_a21glossary = CONTENT
 plugin.tx_a21glossary {
+
 	table = tx_a21glossary_main
-	stdWrap {
-		wrap = {$a21glossary.allWrap}
-		append = COA
-		append {
-			stdWrap.if.isTrue.data = GP:tx_a21glossary|uid
-
-			10 = TEXT
-			10.wrap = {$a21glossary.backWrap}
-			10.value = <a href="javascript:history.back();">{$a21glossary.back}</a>
-
-			20 = TEXT
-			20.value = {$a21glossary.allEntries}
-			20.wrap = {$a21glossary.allEntriesWrap}
-			20.typolink.parameter.data = TSFE:id
-		}
-	}
 	select {
-		pidInList.field = pages
+		pidInList = {$a21glossary.storagePage}
+		pidInList.override {
+			field = pages
+			if.isTrue.field = pages
+		}
 		orderBy = {$a21glossary.orderBy}
 		where = exclude=0
 		andWhere {
@@ -159,6 +151,20 @@ plugin.tx_a21glossary {
 			wrap = uid=|
 		}
 		languageField = sys_language_uid
+	}
+	stdWrap {
+		wrap = {$a21glossary.allWrap}
+		append = COA
+		append {
+			stdWrap.if.isTrue.data = GP:tx_a21glossary|uid
+			10 = TEXT
+			10.wrap = {$a21glossary.backWrap}
+			10.value = <a href="javascript:history.back();">{$a21glossary.back}</a>
+			20 = TEXT
+			20.value = {$a21glossary.allEntries}
+			20.wrap = {$a21glossary.allEntriesWrap}
+			20.typolink.parameter.data = TSFE:id
+		}
 	}
 
 	# Add CSS configuration
@@ -174,7 +180,7 @@ plugin.tx_a21glossary {
 tt_content.list.20.a21glossary < plugin.tx_a21glossary
 
 
-### EXAMPLE HOW THE GLOSSARY CAN BE USED IF NOT GLOBALLY ENABLED
+# EXAMPLE HOW THE GLOSSARY CAN BE USED IF NOT GLOBALLY ENABLED
 #includeLibs.a21glossary = EXT:a21glossary/class.tx_a21glossary.php
 #page.stdWrap.postUserFunc < .config.tx_a21glossary
 #page.stdWrap.postUserFunc = tx_a21glossary->processUserFunc

@@ -1,10 +1,10 @@
 
-// global A21 Glossary configurations
+# global a21glossary configuration - Default Output (Old)
 config.tx_a21glossary {
 
-	// you are allowed to set this globally using the extension manager
-	// includeSearchTags = 1
-	// excludeTags = a,form,acronym,abbr,dfn,h1,h2,h3,h4,h5,h6
+	# This is just an override - you can set this globally using the extension manager
+	#includeSearchTags = 1
+	#excludeTags = a,form,acronym,abbr,dfn,h1,h2,h3,h4,h5,h6
 
 	caseSensitive = {$a21glossary.caseSensitive}
 	preserveCase = {$a21glossary.preserveCase}
@@ -12,8 +12,8 @@ config.tx_a21glossary {
 
 	excludePages = {$a21glossary.glossaryPage}
 
-	// eclude whole page
-	// excludePages.{$a21glossary.glossaryPage} = acronym,abbr,dfn
+	# EXAMPLE exclude only some glossary types instead of all
+	#excludePages.{$somePageID} = acronym,abbr,dfn
 
 	pidList = {$a21glossary.storagePage}
 	typeList = {$a21glossary.typeList}
@@ -37,33 +37,37 @@ config.tx_a21glossary {
 			if.isFalse.field = link
 		}
 		useCacheHash = 1
-		ATagParams = class = "glossary"
+		ATagParams = class="glossary"
 
 		{$a21glossary.commentAnchor} additionalParams >
 		{$a21glossary.commentAnchor} additionalParams.field = uid
 		{$a21glossary.commentAnchor} additionalParams.wrap = #tx_a21glossary_|
 	}
 
-	// noglossary = 1
-	// debug = 1
-	// debug {
-		// query = 1
-		// result = 1
-		// keep = 1
-		// demo = 1
-		// info = 1
-		// markers = 1
-		// keepMarkers = 1
-		// conf = 1
-		// noncaching = 1
-		// regexp = 1
-		// highlight = 1
-		// output = 1
-		// input = 1
-	// }
+	# EXAMPLE how to simply disable the glossary
+	#noglossary = 1
+
+	# EXAMPLE you can set them using get params - see README.txt or manual
+	#debug = 1
+	#debug {
+		#query = 1
+		#result = 1
+		#keep = 1
+		#demo = 1
+		#info = 1
+		#markers = 1
+		#keepMarkers = 1
+		#conf = 1
+		#noncaching = 1
+		#regexp = 1
+		#highlight = 1
+		#output = 1
+		#input = 1
+	#}
 }
 
-// configuration of the glossary list display
+# configuration of a single glossary list item
+# based on the TCA name
 tx_a21glossary_main = COA
 tx_a21glossary_main {
 
@@ -87,26 +91,30 @@ tx_a21glossary_main {
 			10 = CASE
 			10 {
 				key.field = shorttype
-				stdWrap.if.isTrue.field = shorttype
-				stdWrap.wrap = {$a21glossary.typeWrap}
+
+				stdWrap {
+					if.isTrue.field = shorttype
+					required = 1
+					wrap = {$a21glossary.typeWrap}
+				}
 
 				acronym = TEXT
 				acronym {
-					data = lll:EXT:a21glossary/locallang.xml:label_acronym
+					data = LLL:EXT:a21glossary/locallang.xml:label_acronym
 					override = {$a21glossary.acronym_label}
 					wrap = {$a21glossary.labelWrap}
 				}
 
 				abbr = TEXT
 				abbr {
-					data = lll:EXT:a21glossary/locallang.xml:label_abbreviation
+					data = LLL:EXT:a21glossary/locallang.xml:label_abbreviation
 					override = {$a21glossary.abbreviation_label}
 					wrap = {$a21glossary.labelWrap}
 				}
 
 				dfn = TEXT
 				dfn {
-					data = lll:EXT:a21glossary/locallang.xml:label_definition
+					data = LLL:EXT:a21glossary/locallang.xml:label_definition
 					override = {$a21glossary.definition_label}
 					wrap = {$a21glossary.labelWrap}
 				}
@@ -133,55 +141,56 @@ tx_a21glossary_main {
 	}
 }
 
-// configuration of the glossary list plugin
-tt_content.list.20.a21glossary = CONTENT
-tt_content.list.20.a21glossary {
+# configuration of the glossary list plugin
+plugin.tx_a21glossary = CONTENT
+plugin.tx_a21glossary {
+
 	table = tx_a21glossary_main
+	select {
+		pidInList = {$a21glossary.storagePage}
+		pidInList.override {
+			field = pages
+			if.isTrue.field = pages
+		}
+		orderBy = {$a21glossary.orderBy}
+		where = exclude=0
+		andWhere {
+			data = GP:tx_a21glossary|uid
+			intval = 1
+			required = 1
+			wrap = uid=|
+		}
+		languageField = sys_language_uid
+	}
 	stdWrap {
 		wrap = {$a21glossary.allWrap}
 		append = COA
 		append {
-			stdWrap.if.isTrue.data = GPvar:tx_a21glossary|uid
-
+			stdWrap.if.isTrue.data = GP:tx_a21glossary|uid
 			10 = TEXT
 			10.wrap = {$a21glossary.backWrap}
-			10.value = <a href="javascript:history.back()">{$a21glossary.back}</a>
-
+			10.value = <a href="javascript:history.back();">{$a21glossary.back}</a>
 			20 = TEXT
 			20.value = {$a21glossary.allEntries}
 			20.wrap = {$a21glossary.allEntriesWrap}
 			20.typolink.parameter.data = TSFE:id
 		}
 	}
-	select {
-		// selectFields = DISTINCT(uid), pid, tstamp, crdate, cruser_id, t3ver_oid, t3ver_id, t3ver_label, sys_language_uid, l18n_parent, l18n_diffsource, deleted, hidden, starttime, endtime, fe_group, short, shortcut, longversion, shorttype, language, description, link, exclude
-		pidInList.field = pages
-		orderBy = {$a21glossary.orderBy}
-		where = exclude=0
-		andWhere {
-			data = GPvar:tx_a21glossary|uid
-			intval = 1
-			wrap = uid=|
-			required = 1
-		}
-		languageField = sys_language_uid
-	}
+
+
+	# Add CSS configuration
+	_CSS_DEFAULT_STYLE (
+		acronym, dfn, abbr, span.abbr { border-bottom: 1px dotted black; cursor: help; }
+		dl.glossary dt { font-weight: bold; margin: 0 0 3px 0; font-style: normal; }
+		dl.glossary dd { margin: 0 0 15px 20px; }
+		dl.glossary .description { margin: 0; padding: 0; }
+		dl.glossary .type { font-style: italic; padding: 0 3px 0 0; }
+	)
 }
 
-// Add CSS configuration
-plugin.tx_a21glossary._CSS_DEFAULT_STYLE (
-	acronym, dfn, abbr, span.abbr { border-bottom: 1px dotted black; cursor: help; }
-	dl.glossary dt { font-weight: bold; margin: 0 0 3px 0; font-style: normal; }
-	dl.glossary dd { margin: 0 0 15px 20px; }
-	dl.glossary .description { margin: 0; padding: 0; }
-	dl.glossary .type { font-style: italic; padding: 0 3px 0 0; }
-)
+tt_content.list.20.a21glossary < plugin.tx_a21glossary
 
-
-
-// HOW THE GLOSSARY CAN BE USED IF NOT GLOBALLY ENABLED
-/*
-includeLibs.a21glossary = EXT:a21glossary/class.tx_a21glossary.php
-page.stdWrap.postUserFunc < .config.tx_a21glossary
-page.stdWrap.postUserFunc = tx_a21glossary->processUserFunc
-*/
+# EXAMPLE HOW THE GLOSSARY CAN BE USED IF NOT GLOBALLY ENABLED
+#includeLibs.a21glossary = EXT:a21glossary/class.tx_a21glossary.php
+#page.stdWrap.postUserFunc < .config.tx_a21glossary
+#page.stdWrap.postUserFunc = tx_a21glossary->processUserFunc

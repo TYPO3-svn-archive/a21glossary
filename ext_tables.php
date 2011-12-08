@@ -4,8 +4,8 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/', 'A21 Glossary - Default Output');
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Accessibility/', 'A21 Glossary - Accessible Output');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'static/', 'A21 Glossary - Default Output (Old)');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Accessibility/', 'A21 Glossary - Accessible Output (Recommended)');
 
 t3lib_extMgm::addPlugin(array('LLL:EXT:a21glossary/locallang_db.xml:tx_a21glossary_main', 'a21glossary'));
 t3lib_extMgm::allowTableOnStandardPages('tx_a21glossary_main');
