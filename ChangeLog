@@ -3,6 +3,7 @@
 14-04-08 (0.9.5) Ronny Vorpahl <vorpahl@artplan21.de>
 
 	* [BUGFIX] #40554: Link generation fails for translated acronyms
+		* removed spaces from dataWrap
 		* Thanks to Philipp Kitzberger for the solution
 
 
