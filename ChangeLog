@@ -1,8 +1,9 @@
 
-(add new changes on top of this file)
 
-Please Note: Clear all Caches yourself after installing this extension
+14-04-08 (0.9.5) Ronny Vorpahl <vorpahl@artplan21.de>
 
+	* [BUGFIX] #40554: Link generation fails for translated acronyms
+		* Thanks to Philipp Kitzberger for the solution
 
 
 11-12-08 (0.9.4) Ronny Vorpahl <vorpahl@artplan21.de>
@@ -15,6 +16,7 @@ Please Note: Clear all Caches yourself after installing this extension
 		* they differ only in css/wraps/list-styling - no behavioral differences
 
 	* TER upload
+
 
 11-11-21 (0.9.3) Oliver Hader <oliver.hader@typo3.org>
 

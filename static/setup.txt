@@ -32,7 +32,7 @@ config.tx_a21glossary {
 			10.if.isTrue.field = l18n_parent
 			10.if.negate = 1
 			20 = TEXT
-			20.dataWrap = &tx_a21glossary[uid] = {field:l18n_parent}
+			20.dataWrap = &tx_a21glossary[uid]={field:l18n_parent}
 			20.if.isTrue.field = l18n_parent
 			if.isFalse.field = link
 		}
