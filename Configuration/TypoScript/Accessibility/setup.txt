@@ -45,24 +45,7 @@ config.tx_a21glossary {
 	}
 
 	#noglossary = 1
-
-	# EXAMPLE you can set them using get params - see README.txt or manual
-	#debug = 1
-	#debug {
-		#query = 1
-		#result = 1
-		#keep = 1
-		#demo = 1
-		#info = 1
-		#markers = 1
-		#keepMarkers = 1
-		#conf = 1
-		#noncaching = 1
-		#regexp = 1
-		#highlight = 1
-		#output = 1
-		#input = 1
-	#}
+	#keepGlossaryMarkers=1
 }
 
 # configuration of a single glossary list item
@@ -178,7 +161,6 @@ plugin.tx_a21glossary {
 }
 
 tt_content.list.20.a21glossary < plugin.tx_a21glossary
-
 
 # EXAMPLE HOW THE GLOSSARY CAN BE USED IF NOT GLOBALLY ENABLED
 #includeLibs.a21glossary = EXT:a21glossary/class.tx_a21glossary.php

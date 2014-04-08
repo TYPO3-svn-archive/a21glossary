@@ -40,26 +40,6 @@ class tx_a21glossary {
 	protected $searchMarkers2 = array();
 	protected $replaceMarkers2 = array();
 
-	// debug flags
-	protected $debug = FALSE;
-	protected $debugInfo = FALSE;
-	protected $debugMarkers = FALSE;
-	protected $debugNonCaching = FALSE;
-	protected $debugConf = FALSE;
-	protected $debugRegExp = FALSE;
-	protected $debugHighlight = '';
-	protected $debugOutput = FALSE;
-	protected $debugInput = FALSE;
-	protected $debugQuery = FALSE;
-	protected $debugItems = FALSE;
-	protected $debugTrail = FALSE;
-	protected $keepMarkers = FALSE;
-
-	// if in demo mode, this is turned on
-	protected $demoItem;
-	protected $demoContent;
-
-
 	/**
 	 * function call to apply to the totally rendered page (with non-caching
 	 * objects) hook the alternative is the userfunc below
@@ -150,12 +130,10 @@ class tx_a21glossary {
 			}
 		}
 
-		$this->setDebugOptions($conf['debug.']);
-
 		$items = $this->fetchGlossaryItems($conf['pidList']);
 
 		if (!$this->count['used']) {
-			return $this->addDebugOutput($content,$conf);
+			return $content;
 		} else {
 
 			$cObj = t3lib_div::makeInstance('tslib_cObj');
@@ -168,13 +146,6 @@ class tx_a21glossary {
 				if (strlen($item['shortcut']) && ($item['shortcut'] != $item['short'])) {
 					unset($items[$key]);
 					$items[$key] = $item;
-				}
-			}
-
-			// append demo items if available, append cause they overwrite existing items with the same keyword
-			if(count($this->demoItems)) {
-				foreach($this->demoItems as $demoItem) {
-					$items[$demoItem['short']]=$demoItem;
 				}
 			}
 
@@ -234,7 +205,7 @@ class tx_a21glossary {
 					}
 
 					$replacement = trim($cObj->stdWrap($replacement, $conf[$element . '.']));
-					$replacement = ' <' . $element . $lang . $title . $this->debugHighlight . '> ' . $replacement . ' </' . $element . '> ';
+					$replacement = ' <' . $element . $lang . $title . '> ' . $replacement . ' </' . $element . '> ';
 
 					if ($generateLink) {
 						$replacement = ' ' . $cObj->typoLink($replacement, $conf['typolink.']) . ' ';
@@ -293,10 +264,6 @@ class tx_a21glossary {
 			// text boundaries fix
 			$body = str_replace('<', ' <', $body);
 			$body = str_replace('>', '> ', $body);
-
-			if ($this->debugInput) {
-				t3lib_div::debug($body, 'A21GLOSSARY CONTENT INPUT');
-			}
 
 			// prepare include-exclude parts
 			$this->searchMarkers  = array(
@@ -370,30 +337,12 @@ class tx_a21glossary {
 				// set splitmarkers
 				$body = str_replace($this->searchMarkers, $this->replaceMarkers, $body);
 
-				// smuggle demo-content into first replaceble part
-				if (strlen($this->demoContent)) {
-					$body = preg_replace('/<a21glossary>/','<a21glossary>'.$this->demoContent,$body,1);
-					unset($this->demoContent);
-				}
-
 				// replace local entries by recursive content splitting
 				$this->parseObj = t3lib_div::makeInstance('t3lib_parsehtml');
 				$body = $this->splitAndReplace($body);
 
-				if ($this->debugOutput) {
-					t3lib_div::debug($body, 'A21GLOSSARY CONTENT OUTPUT');
-				}
-
 				// final marker handling
-				if ($this->debugMarkers) {
-
-					$body = str_replace(
-						array('<a21glossary>', '</a21glossary>', '<a21glossex>', '</a21glossex>'),
-						array('<div style="border:1px solid green;">', '</div>', '<div style="border:1px solid red;">', '</div>'),
-						$body
-					);
-
-				} elseif ($this->keepMarkers || $conf['keepGlossaryMarkers']) {
+				if ($conf['keepGlossaryMarkers']) {
 
 					$body = str_replace(
 						array('<a21glossary>', '</a21glossary>', '<a21glossex>', '</a21glossex>'),
@@ -415,7 +364,7 @@ class tx_a21glossary {
 			$body = str_replace(' <', '<', $body);
 			$body = str_replace('> ', '>', $body);
 
-			return $head.$this->addDebugOutput($body,$conf);
+			return $head.$body;
 		}
 	}
 
@@ -459,20 +408,6 @@ class tx_a21glossary {
 				}
 				$this->count['found'] += count($rows);
 			}
-
-			if ($this->debugQuery) {
-				t3lib_div::debug(
-					$GLOBALS['TYPO3_DB']->debug_lastBuiltQuery,
-					'debug_lastBuiltQuery for pid=' . $pid
-				);
-			}
-		}
-
-		if ($this->debugItems) {
-			t3lib_div::debug(
-				$items,
-				'debug $items'
-			);
 		}
 
 		$this->count['used'] = count($items);
@@ -574,165 +509,6 @@ class tx_a21glossary {
 			return $content;
 		}
 	}
-
-
-	/**
-	 * sets certain debug options to output
-	 *
-	 * @param array $conf the configuration array
-	 */
-	protected function setDebugOptions($conf) {
-
-		if ($GLOBALS['TSFE']->beUserLogin) {
-
-			if (intval($conf['trail'])		|| intval($this->piVars['trail'])) {
-				$this->debug = 1;
-				$this->debugTrail = 1;
-			}
-			if (intval($conf['info'])		|| intval($this->piVars['info'])) {
-				$this->debug = 1;
-				$this->debugInfo = 1;
-			}
-			if (intval($conf['markers'])	|| intval($this->piVars['markers'])) {
-				$this->debug = 1;
-				$this->debugMarkers = 1;
-				$this->debugNonCaching = 1;
-			}
-			if (intval($conf['conf'])		|| intval($this->piVars['conf'])) {
-				$this->debug = 1;
-				$this->debugConf = 1;
-			}
-			if (intval($conf['noncaching'])	|| intval($this->piVars['noncaching'])) {
-				$this->debug = 1;
-				$this->debugNonCaching = 1;
-			}
-			if (intval($conf['regexp'])		|| intval($this->piVars['regexp'])) {
-				$this->debug = 1;
-				$this->debugRegExp = 1;
-			}
-			if (intval($conf['highlight'])	|| intval($this->piVars['highlight'])) {
-				$this->debug = 1;
-				$this->debugHighlight =' style="border:2px solid green; background-color:#00FF00;"';
-			}
-			if (intval($conf['output'])		|| intval($this->piVars['output'])) {
-				$this->debug = 1;
-				$this->debugOutput = 1;
-			}
-			if (intval($conf['input'])		|| intval($this->piVars['input'])) {
-				$this->debugInput = 1;
-			}
-			if (intval($conf['query'])		|| intval($this->piVars['query'])) {
-				$this->debug = 1;
-				$this->debugQuery = 1;
-				$GLOBALS['TYPO3_DB']->debugOutput = TRUE;
-				$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = TRUE;
-			}
-			if (intval($conf['items'])		|| intval($this->piVars['items'])) {
-				$this->debug = 1;
-				$this->debugItems = 1;
-			}
-			if (intval($conf['keep'])		|| intval($this->piVars['keep'])) {
-				$this->debug = 1;
-				$this->keepMarkers = 1;
-			}
-			if (intval($conf['demo'])		|| intval($this->piVars['demo'])) {
-				$this->debug = 1;
-				$this->demoContent = '
-					<h2 class="csc-firstHeader">A21 Glossary Demo Content</h2>
-					<h3>Uppercase vs. Lowercase</h3>
-					<p class="bodytext"> etc. ETC. eTC etC. <br /><br /></p>
-					<h3>Word Parts</h3>
-					<p class="bodytext"> etc. etc.etc. sthetc. etc.sth sthetc.etc.sth sthetc.sth etc.<br /><br /></p>
-					<h3>Mixed with Tags</h3>
-					<p class="bodytext"><em>etc.</em>etc.<em> etc.</em> etc.<em> etc. </em> etc. <em>etc. </em>etc. <em>sth</em><br /><br /></p>
-					<h3>Within Links</h3>
-					<p class="bodytext"><a href=" ">etc.</a>etc.<a href=" "> etc.</a> etc.<a href=" "> etc. </a> etc. <a href=" ">etc. </a>etc. <a href=" ">sth</a><br /><br /></p>
-					<h3>Mixed With Line Breaks</h3>
-					'."<p >e\rtc.  e\ntc. etc.\r etc.\n \retc. \r\netc. </p>".'
-					<h3>Within Tags (do not replace)</h3>
-					<p class="bodytext"><em class="etc.">no</em> <em class=" etc.">no</em><em class="etc. ">no</em><em class=" etc. ">no</em> </p>
-					<br /><br />
-				';
-
-				$this->demoItems = array();
-				$this->demoItems[] = array(
-					'short'=>'etc.',
-					'longversion'=>'et cetera demo item',
-					'shorttype'=>'abbr'
-				);
-			}
-
-			if($this->debug == 1) {
-				$GLOBALS['TSFE']->set_no_cache();
-				t3lib_div::debug($this->piVars,'A21 Glossary (tx_a21glossary): PiVars');
-			}
-		}
-
-	}
-
-
-	/**
-	 * does the debug output for certain options
-	 *
-	 * @param string $content the processed body
-	 * @param array $conf the configuration array
-	 */
-	protected function addDebugOutput($content,$conf) {
-
-		$debugOutput = '';
-
-		if ($this->debugInfo) {
-			$debugOutput .= '<p align="left" style="text-align:left;">A21Glossary Debug:<br />' .
-				'Parsetime: '.((microtime(true) - $this->time_start)*1000).' ms<br />' .
-				'Entries: ' . $this->count['found'] . ' Found, ' . $this->count['used'] . ' Used - ' . $this->count['local'] . ' Local, ' . $this->count['global'] . ' Global<br />' .
-				'Depths: ';
-			for ($i = -1; $i <= 15; $i++) {
-				$debugOutput .= $this->depths[$i] . ' ';
-			}
-			$debugOutput .= '<br />Replacements: ' . $this->count['replaced'] . '<br /></p>';
-		}
-
-		if ($this->debugTrail) {
-			t3lib_div::debug(
-				t3lib_div::debug_trail(),
-				'GLOSSARY INVOKE TRAIL'
-			);
-		}
-
-		if ($this->debugConf) {
-			t3lib_div::debug($conf, 'GLOSSARY CONF');
-		}
-
-		if ($this->debugRegExp) {
-			if (count($this->searchGlobal)) {
-				t3lib_div::debug(array(
-						'Search'  => $this->searchGlobal,
-						'Replace' => $this->replaceGlobal
-					), 'RegExp Global'
-				);
-			}
-
-			if (count($this->search)) {
-				t3lib_div::debug(array(
-						'Search'  => $this->search,
-						'Replace' => $this->replace
-					), 'RegExp Local'
-				);
-			}
-		}
-
-		if ($this->debugNonCaching) {
-			$content = preg_replace('/<!--INT_SCRIPT\.([a-zA-Z0-9]+)-->/', '<div style="border:1px dashed red;">&nbsp;<!--INT_SCRIPT.\1-->&nbsp;</div>', $content);
-			$content = preg_replace('/<!--EXT_SCRIPT\.([a-zA-Z0-9]+)-->/', '<div style="border:1px dotted red;">&nbsp;<!--EXT_SCRIPT.\1-->&nbsp;</div>', $content);
-		}
-
-		return $content.$debugOutput;
-	}
-
-}
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/a21glossary/class.tx_a21glossary.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/a21glossary/class.tx_a21glossary.php']);
 }
 
 ?>

@@ -46,24 +46,7 @@ config.tx_a21glossary {
 
 	# EXAMPLE how to simply disable the glossary
 	#noglossary = 1
-
-	# EXAMPLE you can set them using get params - see README.txt or manual
-	#debug = 1
-	#debug {
-		#query = 1
-		#result = 1
-		#keep = 1
-		#demo = 1
-		#info = 1
-		#markers = 1
-		#keepMarkers = 1
-		#conf = 1
-		#noncaching = 1
-		#regexp = 1
-		#highlight = 1
-		#output = 1
-		#input = 1
-	#}
+	#keepGlossaryMarkers=1
 }
 
 # configuration of a single glossary list item

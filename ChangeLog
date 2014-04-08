@@ -1,5 +1,14 @@
 
 
+14-04-08 (6.2.0) Ronny Vorpahl <vorpahl@artplan21.de>
+
+	* [API] added Typo3 6.2 compatibility
+		* removed debug statements and all related stuff (see typo3 coding guidelines)
+		* removed xclass definitions
+		* added ext_autoload.php
+		* updated ext_emconf.php
+
+
 14-04-08 (0.9.5) Ronny Vorpahl <vorpahl@artplan21.de>
 
 	* [BUGFIX] #40554: Link generation fails for translated acronyms
